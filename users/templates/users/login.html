@@ -1,0 +1,24 @@
+{% extends 'front/base.html' %}
+{% block content%}
+{% load crispy_forms_tags %}  
+<div class="w3-content w3-margin-top" style="max-width:800px;">
+	<div class="content-section">
+	        <form method="POST">
+	        	<h2 style="text-align: center;">Login</h2>
+	            {% csrf_token %}
+	                {{ form|crispy }}
+	            <div class="form-group">
+	                <button style="background-color: #009688!important; border-width: 0px;" type="Submit" class="btn btn-primary">Login</button>
+	            </div>
+	        </form>
+	        <div class="border-top pt-3">
+	        	<div style="display: flex; justify-content: space-between;">
+				  <small class="text-muted">
+	                Need an account? <a style="color:#009688!important" href="{% url 'register' %}">Register</a><br>
+	            </small>
+	            <small>Forget password? <a style="color:#009688!important" href="{% url 'password_reset' %}">Reset</a></small>
+				</div>
+	        </div>
+	    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "front/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="w3-content w3-margin-top" style="max-width:800px;">
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.image.url }}">
+        <div class="media-body">
+          <div style="display: flex; justify-content: space-between;">
+            <h2 style="margin-top:35px" class="account-heading">{{ user.username }}</h2>
+              
+          </div>
+        </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h2>Update profile</h2>
+
+              {{form|crispy }}
+
+          <div class="form-group">
+
+            <div style="display: flex; justify-content: space-between;">
+           <button style="background-color: #009688!important; border-width: 0px;" type="Submit" class="btn btn-primary">
+              Update</button>
+              <a style="color:#009688!important;" href="{% url 'password_change' %}"><small>Change Pasword</small></a>
+          </div>
+              
+          </div>
+      </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,255 @@
+{% extends 'front/base.html' %}
+{% block content%}
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1300px;min-width:150px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <img src="{{data.image.url}}" style="width:100%;" alt="Avatar">
+
+          <div class="w3-display-bottomleft w3-container w3-text-black">
+            {% if user.is_authenticated  and user.tk == cv_owner %}
+            <div style="display: flex; justify-content: space-between;">
+              <a style="color:#009688!important;margin-bottom: 9px;" href="{% url 'profile' %}">Update Profile</a>
+             
+                       </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="w3-container">
+          <br>
+           <h2 style="color: #757575!important"><strong>{{data.username}}</strong></h2>
+          <br>
+          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>{{data.professional_training}}</p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{data.city}}, {{data.country}}</p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{data.email}}</p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>{{data.phone}}</p>
+          <hr>
+          <!-- Skills section -->
+          {% if user.is_authenticated  and user.tk == cv_owner %}
+
+          <div style="display: flex; justify-content: space-between;">
+            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
+            <a href="{% url 'skills' %}"><p style="color:#009688!important">Update</p></a>
+          </div>
+             {% for sk in data.skill_set.all %}
+            <p>{{sk.sk}}</p>
+                    {% if sk.percent == "Beginner" %}
+                        {% with perc=30 %}   
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{sk.percent}}</div>
+            </div><br>
+                       {% endwith %}
+                    {% elif sk.percent == "Intermediate"%}
+                      {% with perc=60 %} 
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{sk.percent}}</div>
+            </div><br>
+                        {% endwith %}
+                    {% elif sk.percent == "Advanced"%}
+                      {% with perc=100 %} 
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{sk.percent}}</div>
+            </div><br>
+                        {% endwith %}
+                      {% endif %}
+              {%endfor%}
+            {% else %}
+            <div style="display: flex; justify-content: space-between;">
+            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
+
+          </div>
+             {% for sk in data.skill_set.all %}
+            <p>{{sk.sk}}</p>
+                    {% if sk.percent == "Beginner" %}
+                        {% with perc=30 %}   
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{sk.percent}}</div>
+            </div><br>
+                       {% endwith %}
+                    {% elif sk.percent == "Intermediate"%}
+                      {% with perc=60 %} 
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{sk.percent}}</div>
+            </div><br>
+                        {% endwith %}
+                    {% elif sk.percent == "Advanced"%}
+                      {% with perc=100 %} 
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{sk.percent}}</div>
+            </div><br>
+                        {% endwith %}
+                      {% endif %}
+              {%endfor%}
+               
+            {% endif %}
+            <hr>
+
+
+            <!-- End Skills section -->
+            <!-- Language section -->
+
+
+           
+         {% if user.is_authenticated  and user.tk == cv_owner %}
+
+          <div style="display: flex; justify-content: space-between;">
+            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
+            <a href="{% url 'languages' %}"><p style="color:#009688!important">Update</p></a>
+          </div>
+             {% for lg in data.language_set.all %}
+            <p>{{lg.lg}}</p>
+                    {% if lg.percent == "Beginner" %}
+                        {% with perc=30 %}   
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{lg.percent}}</div>
+            </div><br>
+                       {% endwith %}
+                    {% elif lg.percent == "Intermediate"%}
+                      {% with perc=60 %} 
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{lg.percent}}</div>
+            </div><br>
+                        {% endwith %}
+                    {% elif lg.percent == "Advanced"%}
+                      {% with perc=100 %} 
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{lg.percent}}</div>
+            </div><br>
+                        {% endwith %}
+                      {% endif %}
+              {%endfor%}
+            {% else %}
+            <div style="display: flex; justify-content: space-between;">
+            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
+          </div>
+             {% for lg in data.language_set.all %}
+            <p>{{lg.lg}}</p>
+                    {% if lg.percent == "Beginner" %}
+                        {% with perc=30 %}   
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{lg.percent}}</div>
+            </div><br>
+                       {% endwith %}
+                    {% elif lg.percent == "Intermediate"%}
+                      {% with perc=60 %} 
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{lg.percent}}</div>
+            </div><br>
+                        {% endwith %}
+                    {% elif lg.percent == "Advanced"%}
+                      {% with perc=100 %} 
+                            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{perc}}%">{{lg.percent}}</div>
+            </div><br>
+                        {% endwith %}
+                      {% endif %}
+              {%endfor%}
+
+            {% endif %}
+            <!-- End Language section -->
+          <br>
+        </div>
+      </div>
+      <br>
+  
+ 
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    
+    <div class="w3-twothird">
+
+           <!-- about -->
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <div style="display: flex; justify-content: space-between;">
+          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><strong>About</strong></h2>
+          {% if user.is_authenticated  and user.tk == cv_owner %}
+          <a href="{% url 'about' %}"><p style="padding-top: 35px; padding-right: 15px; color:#009688!important">Update</p></a>
+          {% endif %}
+        </div>        
+        <div class="w3-container" style="min-width:30px;">
+          {% for ob in data.about_set.all%}
+          <p style="word-break: break-word">{{ ob.description | linebreaksbr}}</p>
+          <br>
+          {%endfor%}
+        </div>
+      </div>
+
+        <!-- work -->
+
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <div style="display: flex; justify-content: space-between;">
+          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><strong>Work Experience</strong></h2>
+          {% if user.is_authenticated  and user.tk == cv_owner %}
+          <a href="{% url 'works'%}"><p style="padding-top: 35px;padding-right: 15px;color:#009688!important">Update</p></a>
+          {% endif %}
+        </div>
+        <div class="w3-container">
+          {% for dt in data.work_set.all%}
+          <h5 class="w3-opacity" style="word-break: break-word"><b>{{ dt.company }} / {{ dt.position }}</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-globe fa-fw w3-margin-right"></i>{{ dt.location }}</h6>
+          {% if dt.end_date %}
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{dt.start_date}} - {{dt.end_date}}</h6> 
+          {% else %}
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{dt.start_date}} - <span style="padding-bottom:3px ;" class="w3-tag w3-teal w3-round">Current position</span></h6> 
+          
+            {% endif %}
+
+          <p style="word-break: break-word">{{ dt.work_description | linebreaksbr}}</p>
+          <br>
+          {%endfor%}
+        </div>
+      </div>
+
+       <!-- Education -->
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <div style="display: flex; justify-content: space-between;">
+          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><strong>Education</strong></h2>
+          {% if user.is_authenticated  and user.tk == cv_owner %}
+          <a href="{% url 'education'%}"><p style="padding-top: 35px;padding-right: 15px;color:#009688!important">Update</p></a>
+          {% endif %}
+        </div>
+        <div class="w3-container">
+          {% for ed in data.education_set.all%}
+          <h5 class="w3-opacity"><b>{{ ed.institution_name }} / {{ ed.degree}}</b></h5>
+          <h6 class="w3-text-teal"><i class="fa fa-globe fa-fw w3-margin-right"></i>{{ ed.location }}</h6>
+          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{ed.graduation_year}}</h6>
+          <p>{{ ed.description }}</p>
+          <br>
+          {%endfor%}
+        </div>
+      </div>
+                <!-- Objective -->
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <div style="display: flex; justify-content: space-between;">
+          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-question-circle fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><strong>Objective</strong></h2>
+          {% if user.is_authenticated  and user.tk == cv_owner %}
+          <a href="{% url 'objective' %}"><p style="padding-top: 35px;padding-right: 15px;color:#009688!important">Update</p></a>
+          {% endif %}
+        </div>        
+        <div class="w3-container"><br>
+          {% for ob in data.objective_set.all%}
+          <p style="color:#757575; margin-top: -30px;word-break: break-word">{{ ob.description | linebreaksbr}}</p>
+          <br>
+          {%endfor%}
+        </div>
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+{% endblock %}

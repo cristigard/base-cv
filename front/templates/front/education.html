@@ -1,0 +1,54 @@
+{% extends 'front/base.html' %}
+{% load crispy_forms_tags %}  
+{% block content %}
+
+<div class="w3-content w3-margin-top" style="max-width:800px;text-align:center ;">
+	<h2>Education</h2>
+</div>
+{% for education in user.education_set.all %}
+	<div class="w3-content w3-margin-top" style="max-width:800px;text-align:center ;">
+	<div  class="content-section">
+		<div class="d-flex justify-content-between">
+			<h4>{{education.institution_name}} / {{education.degree}} / {{education.graduation_year}}</h4>
+			<form method="POST">{% csrf_token %}
+			<button class="btn btn-danger btn-sm mt-2 mb-1" type="submit" name = "delete" >Delete</button>
+            <input type="hidden" name="education.id" value="{{education.id}}">
+			</form>
+		</div>
+	</div>
+	</div>
+{% empty %}
+	<div class="w3-content w3-margin-top" style="max-width:800px;text-align:center ;">
+	<div  class="content-section">
+		<h4>No education added yet</h4>
+	</div>
+	</div>
+{% endfor %}
+
+<div class="w3-content w3-margin-top" style="max-width:800px;">
+	<div  class="content-section">
+	        <form method="POST">
+	        	<div style="text-align:center;">
+	        	<h3>Add Education</h3>
+	        	</div>
+	     
+	            {% csrf_token %} {{ education_form|crispy }}
+
+	            <div class="form-group" style="">
+	            	<button style="background-color: #009688!important; border-width: 0px;" type="Submit" class="btn btn-primary" name="education">Add</button>
+	            </div>	 	            
+				</div>	
+	            </div>
+	        </form>
+	    </div>
+
+<div class="w3-content w3-margin-top" style="max-width:800px;">
+	<div  class="content-section">
+		<div class="d-flex justify-content-between">
+			<a href="{% url 'about' %}" class="button">&#8592; Back</a>
+			<a href="{% url 'objective' %}" class="button">Next &#8594;</a>
+		</div>
+</div>
+</div>
+</div>
+{% endblock %}

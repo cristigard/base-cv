@@ -1,0 +1,18 @@
+<h1>logut {{user.username }} - bye </h1>
+<br>
+<p><a href="{% url 'login' %}">Login</a></p>
+
+
+{% extends 'front/base.html' %}
+{% block content%}
+<div class="w3-content w3-margin-top" style="max-width:800px;">
+	<div class="content-section">
+	        <p>jj</p>
+	        <div class="border-top pt-3">
+	            <small class="text-muted">
+	                Need an account? <a style="color: red" href="{% url 'register' %}">Register</a>
+	            </small>
+	        </div>
+	    </div>
+</div>
+{% endblock %}
